@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';//Observable
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
+// import { Observable } from 'rxjs/Observable';//Observable
+// import 'rxjs/add/operator/map';
+//import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { User } from './user.model';
 
@@ -11,7 +13,7 @@ import { User } from './user.model';
 })
 export class UserService {
   selectedUser: User;
-  userc: User[];
+  users: User[];
 
   constructor() { }
 }
