@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 import { UserService } from '../shared/user.service';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-user',
@@ -13,6 +15,24 @@ export class UserComponent implements OnInit {
   constructor(public userService: UserService) { }//edit to private to public
 
   ngOnInit() {
+    this.resetForm();
+  }
+
+  resetForm(form?: NgForm) {
+    if (form)
+      form.reset();
+      this.userService.selectedUser = {
+        _id: "",
+        name: "",
+        equipment:"",
+        time: null,
+        damage: ""
+      }
+  }
+
+  onSubmit(form : NgForm)
+  {
+    this.userService.postUser(form.value);
   }
 
 }

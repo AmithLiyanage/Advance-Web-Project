@@ -14,6 +14,11 @@ import { User } from './user.model';
 export class UserService {
   selectedUser: User;
   users: User[];
+  readonly baseURL = 'http://localhost:3000/users';
 
-  constructor() { }
+  constructor(private http : HttpClient) { }
+
+  postUser(cuser : User) {
+    return this.http.post(this.baseURL, cuser);
+  }
 }
