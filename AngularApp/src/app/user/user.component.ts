@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 
 import { UserService } from '../shared/user.service';
 import { from } from 'rxjs';
+import { User } from '../shared/user.model';
 
 declare var M: any;
 
@@ -18,6 +19,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.resetForm();
+    this.refreshUserList();
   }
 
   resetForm(form?: NgForm) {
@@ -35,10 +37,40 @@ export class UserComponent implements OnInit {
 
   onSubmit(form : NgForm)
   {
-    this.userService.postUser(form.value).subscribe((res) => {
-      this.resetForm();
-      M.toast({html: 'Saved successfully', classes: 'rounded'});
+    if (form.value._id == "") {
+      this.userService.postUser(form.value).subscribe((res) => {
+        this.resetForm(form);
+        this.refreshUserList();
+        //M.toast({html: 'Saved successfully', classes: 'rounded'});
+      });
+    }
+    else {
+      this.userService.putUser(form.value).subscribe((res) => {
+        this.resetForm(form);
+        this.refreshUserList();
+       // M.toast({html: 'Updated successfully', classes: 'rounded'});
+      });
+    }
+  }
+
+  refreshUserList() {
+    this.userService.getUserList().subscribe((res) => {
+      this.userService.users = res as User[];
     });
+  }
+
+  onEdit(cuser : User) {
+    this.userService.selectedUser = cuser;
+  }
+
+  onDelete(_id: string, form: NgForm) {
+    if (confirm('Are you sure to delete this record ?') == true) {
+      this.userService.deleteUser(_id).subscribe((res) => {
+        this.refreshUserList();
+        this.resetForm(form);
+        // M.toast({html: 'Deleted successfully', classes: 'rounded'});
+      });
+    }
   }
 
 }

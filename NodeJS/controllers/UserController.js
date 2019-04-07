@@ -46,7 +46,7 @@ router.put('/:id', (req, res) => {
     time: req.body.time, 
     damage: req.body.damage
   });
-  User.findByIdAndUpdate(req.params.id, { $set: emp }, { new: true }, (err, doc) => {
+  User.findByIdAndUpdate(req.params.id, { $set: cuser }, { new: true }, (err, doc) => {
     if (!err) { res.send(doc); }
     else { console.log('Error in User Update :' + JSON.stringify(err, undefined, 2)); }
   });

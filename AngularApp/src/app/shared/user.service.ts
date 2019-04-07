@@ -12,7 +12,7 @@ import { User } from './user.model';
   providedIn: 'root'
 })
 export class UserService {
-  selectedUser: User;
+  selectedUser: User = new User();
   users: User[];
   readonly baseURL = 'http://localhost:3000/users';
 
@@ -21,4 +21,17 @@ export class UserService {
   postUser(cuser : User) {
     return this.http.post(this.baseURL, cuser);
   }
+
+  getUserList() {
+    return this.http.get(this.baseURL);
+  }
+
+  putUser(cuser: User) {
+    return this.http.put(this.baseURL + `/${cuser._id}`, cuser);
+  }
+
+  deleteUser(_id: string) {
+    return this.http.delete(this.baseURL + `/${_id}`);
+  }
 }
+

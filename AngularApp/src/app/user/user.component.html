@@ -41,7 +41,28 @@
             </form>
           </div>
           <div class="col s7">
-
+            <table class="responsive-table highlight">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Equipment</th>
+                  <th>Damage</th>
+                </tr>
+                <tr *ngFor="let cuser of userService.users">
+                  <td>{{cuser.name}}</td>
+                  <td>{{cuser.equipment}}</td>
+                  <td>{{cuser.damage}}</td>
+                  <td>
+                    <a class="action-btn" (click)="onEdit(cuser)">
+                      <i class="material-icons">edit</i>
+                     </a>
+                    <a class="action-btn" (click)="onDelete(cuser._id, userForm)">
+                      <i class="material-icons">delete</i>
+                    </a>
+                  </td>
+                </tr>
+              </thead>
+            </table>
           </div>
         </div>
       </div>
