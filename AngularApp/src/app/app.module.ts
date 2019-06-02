@@ -10,11 +10,13 @@ import { UserComponent } from './user/user.component';
 //material
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent
+    UserComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
