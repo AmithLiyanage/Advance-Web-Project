@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -12,11 +12,18 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MapComponent } from './map/map.component';
 
+import { CommonModule } from '@angular/common';
+
+import { AgmCoreModule } from '@agm/core';
+import { Maps1Component } from './maps1/maps1.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    MapComponent
+    MapComponent,
+    Maps1Component
   ],
   imports: [
     BrowserModule,
@@ -24,7 +31,12 @@ import { MapComponent } from './map/map.component';
     BrowserAnimationsModule,
     FormsModule,
     MatFormFieldModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCZVQiQ5HOprGADSF1kFH5GiOjlXDILuKo'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
